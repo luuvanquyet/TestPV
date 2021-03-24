@@ -1,0 +1,55 @@
+﻿@{
+    Layout = "~/Shared/_Layout.cshtml";
+}
+@section header{
+    List User By Sort
+}
+<link href="~/Css/custom.css" rel="stylesheet" />
+<body>
+    <div class="function-add">
+        <a href="/User/Create" style="text-decoration: none">Add</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Function</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>GrID</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Function</th>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>GrID</th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.ID">
+                            <td>
+                                <a href="/User/Edit/@item.ID">Edit</a>
+                                |
+                                @Ajax.ActionLink("Delete", "Delete", new { @id = item.ID }, new AjaxOptions()
+                           {
+                               Confirm = "Bạn có muốn xóa bản ghi này?",
+                               OnComplete = "$('#row_" + @item.ID + "').romove()",
+                               HttpMethod = "Delete"
+                           })
+                            </td>
+                            <td>@item.ID</td>
+                            <td>@item.Name</td>
+                            <td>@item.GrID</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>

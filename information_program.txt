@@ -1,0 +1,3 @@
+Programing Tool : Visual studio 2019, SQL Server Management Studio 2012
+Programming language: C#
+Using Model: MVC Framework ASP.Net

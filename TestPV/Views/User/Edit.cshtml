@@ -1,0 +1,60 @@
+﻿
+@model Model.User
+
+@{
+    ViewBag.Title = "Update";
+    Layout = "~/Shared/_Layout.cshtml";
+}
+@section header{
+    Edit User
+}
+<link href="~/Css/custom.css" rel="stylesheet" />
+
+@using (Ajax.BeginForm("Edit", "User",FormMethod.Post, new AjaxOptions {
+    Confirm ="Do you want to data?",
+    OnSuccess = "OnSuccess",
+    OnFailure = "OnFailure"
+}))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>User</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.GrID, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.GrID, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.GrID, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group btn-Add">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Update" class="btn btn-default btn-primary" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+<script>
+    function OnSuccess() {
+        alert("Update success!");
+    }
+    function createfailure() {
+        alert("Update failure!");
+    }
+</script>
+

@@ -1,0 +1,16 @@
+﻿body {
+}
+.function-add{
+    width: 100px;
+    height:30px;
+    border:1px solid #0026ff;
+    background:#0094ff;
+    text-align:center;
+    border-radius:10px;
+}
+.function-add a{
+    color: #fff;
+}
+    .function-add:hover {
+        background: #0b84ca;
+    }
